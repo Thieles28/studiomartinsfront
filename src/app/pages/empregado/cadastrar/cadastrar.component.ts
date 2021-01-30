@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EmpregadoService } from '../../../empregado.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import {Empregado} from '../../../model/empregado';
 
 @Component({
   selector: 'app-cadastrar',
@@ -8,7 +9,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./cadastrar.component.scss']
 })
 export class CadastrarComponent implements OnInit {
-  empregado: FormGroup;
+
+  formEmpregado: FormGroup;
   submitted = false;
 
   constructor(
@@ -18,10 +20,11 @@ export class CadastrarComponent implements OnInit {
 
     ngOnInit() {
       this.formEmpregados();
+      this.onSubmit();
     }
 
     formEmpregados() {
-        this.empregado = this.formBuilder.group({
+        this.formEmpregado = this.formBuilder.group({
           perfil: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
           email: [null, [Validators.required, Validators.email]],
           nome: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
@@ -37,14 +40,15 @@ export class CadastrarComponent implements OnInit {
     }
 
     get obter() {
-      return this.empregado.controls;
+      return this.formEmpregado.controls;
     }
 
     onSubmit() {
-      this.empregadoService.cadastrarEmpregado(this.empregado.value)
-      .subscribe(resposta => {
+      this.empregadoService.cadastrarEmpregado(this.formEmpregado.value)
+      .subscribe((resposta: Empregado) => {
+        console.log('Empregado', resposta);
         this.submitted = true;
-        this.empregado.reset();
+        this.formEmpregado.reset();
       });
     }
 }

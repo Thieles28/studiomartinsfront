@@ -15,13 +15,13 @@
           </div>
         </div>
         <div class="card-body">
-          <form [formGroup]="empregado" (ngSubmit)="onSubmit()">
+          <form [formGroup]="formEmpregado" (ngSubmit)="onSubmit()">
             <h6 class="heading-small text-muted mb-4">Informações empregado</h6>
             <div class="pl-lg-4">
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="perfil">Perfil</label>
+                    <label class="form-control-label">Perfil</label>
                     <input type="text" formControlName="perfil" class="form-control" [ngClass]="{'is-invalid': obter.perfil.errors && obter.perfil.value}">
                     <div *ngIf="obter.perfil.invalid && (obter.perfil.dirty || obter.perfil.touched)">
                     <div class="form-control-label" style="color: red" *ngIf="obter.perfil.errors.required">Perfil Obrigatório</div>
@@ -32,7 +32,7 @@
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="email">Email</label>
+                    <label class="form-control-label">Email</label>
                     <input type="email" formControlName="email" [ngClass]="{'is-invalid': obter.email.errors && obter.email.value}" class="form-control">
                     <div *ngIf="obter.email.invalid && (obter.email.dirty && obter.nome.touched)">
                     <div class="form-control-label" style="color: red" *ngIf="obter.email.errors.required">Email Obrigatório</div>
@@ -43,7 +43,7 @@
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="nome">Nome</label>
+                    <label class="form-control-label">Nome</label>
                     <input type="text" formControlName="nome" [ngClass]="{'is-invalid': obter.nome.errors && obter.nome.value}" class="form-control">
                     <div *ngIf="obter.nome.invalid && (obter.nome.dirty || obter.nome.touched)" >
                     <div class="form-control-label" style="color: red" *ngIf="obter.nome.errors.required">Nome Obrigatório</div>
@@ -54,7 +54,7 @@
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="sobrenome">Sobrenome</label>
+                    <label class="form-control-label">Sobrenome</label>
                     <input type="text"formControlName="sobrenome" [ngClass]="{'is-invalid': obter.sobrenome.errors && obter.sobrenome.value}" class="form-control">
                     <div *ngIf="obter.sobrenome.invalid && (obter.sobrenome.dirty || obter.sobrenome.touched)">
                     <div class="form-control-label" style="color: red" *ngIf="obter.sobrenome.errors.required">Sobrenome Obrigatório</div>
@@ -69,7 +69,7 @@
               <div class="row">
                 <div class="col-md-12">
                   <div class="form-group">
-                    <label class="form-control-label" for="endereco">Endereço</label>
+                    <label class="form-control-label">Endereço</label>
                     <input type="text" formControlName="endereco" [ngClass]="{'is-invalid': obter.endereco.errors && obter.endereco.value}" class="form-control">
                     <div *ngIf="obter.endereco.invalid && (obter.endereco.dirty || obter.endereco.touched)">
                     <div class="form-control-label" style="color: red" *ngIf="obter.endereco.errors.required">Endereço Obrigatório</div>
@@ -81,23 +81,23 @@
               <div class="row">
                 <div class="col-lg-4">
                   <div class="form-group">
-                    <label class="form-control-label" for="cidade">Cidade</label>
+                    <label class="form-control-label">Cidade</label>
                     <input type="text" formControlName="cidade" [ngClass]="{'is-invalid': obter.cidade.errors && obter.cidade.value}" class="form-control">
                   </div>
                 </div>
                 <div class="col-lg-4">
                   <div class="form-group">
-                    <label class="form-control-label" for="estado">Estado</label>
+                    <label class="form-control-label" >Estado</label>
                     <input type="text" formControlName="estado" [ngClass]="{'is-invalid': obter.estado.errors && obter.estado.value}" class="form-control">
                   </div>
                 </div>
                 <div class="col-lg-4">
                   <div class="form-group">
-                    <label class="form-control-label" for="cep">Cep</label>
+                    <label class="form-control-label">Cep</label>
                     <input type="text" formControlName="cep" [ngClass]="{'is-invalid': obter.cep.errors && obter.cep.value}" class="form-control">
                   </div>
                   <div class="text-right">
-                    <button type="submit" [disabled]="funcionario.invalid" class="btn btn-primary my-4" >Cadastrar</button>
+                    <button type="submit" class="btn btn-primary my-4" >Cadastrar</button>
                   </div>
                 </div>
                 <div class="col-lg-12" *ngIf="submitted">
@@ -109,7 +109,7 @@
                     </button>
                   </div>
                 </div>
-                <div class="col-lg-12" *ngIf="funcionario.setErrors">
+                <div class="col-lg-12" *ngIf="formEmpregado.setErrors">
                   <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     <span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
                     <span class="alert-inner--text"><strong>Perigo!</strong> Error a cadastrar!</span>
